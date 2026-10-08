@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Edit Employee</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h2>Employee Management System</h2>
+
+        <div>
+
+            <a href="{{ url_for('main.dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('main.employees') }}">
+                Employee List
+            </a>
+
+            <a href="{{ url_for('main.logout') }}">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="form-container">
+
+        <h1>Edit Employee</h1>
+
+        <form method="POST">
+
+            <div class="form-group">
+
+                <label>First Name</label>
+
+                <input
+                    type="text"
+                    name="first_name"
+                    value="{{ employee[1] }}"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Last Name</label>
+
+                <input
+                    type="text"
+                    name="last_name"
+                    value="{{ employee[2] }}"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    value="{{ employee[3] }}"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Phone</label>
+
+                <input
+                    type="text"
+                    name="phone"
+                    value="{{ employee[4] or '' }}"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Department</label>
+
+                <input
+                    type="text"
+                    name="department"
+                    value="{{ employee[5] or '' }}"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Salary</label>
+
+                <input
+                    type="number"
+                    name="salary"
+                    value="{{ employee[6] or '' }}"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Joining Date</label>
+
+                <input
+                    type="date"
+                    name="joining_date"
+                    value="{{ employee[7].strftime('%Y-%m-%d') if employee[7] else '' }}"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select name="status">
+
+                    <option value="ACTIVE"
+                        {% if employee[8] == 'ACTIVE' %}
+                            selected
+                        {% endif %}>
+                        ACTIVE
+                    </option>
+
+                    <option value="INACTIVE"
+                        {% if employee[8] == 'INACTIVE' %}
+                            selected
+                        {% endif %}>
+                        INACTIVE
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit">
+                Update Employee
+            </button>
+
+            <a href="{{ url_for('main.employees') }}"
+               class="btn btn-secondary">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

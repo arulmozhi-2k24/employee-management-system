@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Dashboard - Employee Management System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        <h2>Employee Management System</h2>
+
+        <div>
+
+            <a href="{{ url_for('main.employees') }}">
+                Employee List
+            </a>
+
+            <a href="{{ url_for('main.logout') }}">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <h1>Dashboard</h1>
+
+        <h2>
+            Welcome, {{ session["username"] }}
+        </h2>
+
+        <p>
+            Role: {{ session["role"] }}
+        </p>
+
+        <div class="card-container">
+
+            <div class="card">
+
+                <h3>Total Employees</h3>
+
+                <p>
+                    {{ total_employees }}
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Active Employees</h3>
+
+                <p>
+                    {{ active_employees }}
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Inactive Employees</h3>
+
+                <p>
+                    {{ inactive_employees }}
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Total Salary</h3>
+
+                <p>
+                    {{ total_salary }}
+                </p>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <a href="{{ url_for('main.employees') }}"
+           class="btn">
+            Employee List
+        </a>
+
+        <a href="{{ url_for('main.add_employee') }}"
+           class="btn btn-success">
+            Add Employee
+        </a>
+
+    </div>
+
+</body>
+
+</html>
